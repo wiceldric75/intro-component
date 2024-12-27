@@ -136,7 +136,7 @@ button {
   border-radius: 5px;
   background: #38cc8b;
   box-shadow: 0px -4px 0px 0px rgba(0, 0, 0, 0.09) inset;
-  padding: 15px 42px;
+  padding: 15px 43px;
   border: none;
   color: #fff;
   text-align: center;
@@ -158,9 +158,9 @@ button span {
   letter-spacing: 0px;
 }
 button:hover {
-    border-radius: 5px;
-background: #77E2B3;
-box-shadow: 0px -4px 0px 0px rgba(0, 0, 0, 0.09) inset;
+  border-radius: 5px;
+  background: #77e2b3;
+  box-shadow: 0px -4px 0px 0px rgba(0, 0, 0, 0.09) inset;
 }
 h3 {
   color: #bab7d4;
@@ -212,7 +212,6 @@ h3 span {
   padding-bottom: 13px;
   padding-top: 6px;
   display: none;
-
 }
 @media (min-width: 1024px) {
   main {
