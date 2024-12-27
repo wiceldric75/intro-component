@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Intro component with sign up form</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  </head>
+  <body>
+    <main>
+      <section class="form-info">
+        <h1>Learn to code by watching others</h1>
+        <p>
+          See how experienced developers solve problems in real-time. Watching
+          scripted tutorials is great, but understanding how developers think is
+          invaluable.
+        </p>
+      </section>
+      <section class="form-try-and-fields">
+        <div class="try-free">
+          <h2>Try it free 7 days <span>then $20/mo. thereafter</span></h2>
+        </div>
+        <div class="form-fields">
+          <form class="first-name-form">
+            <div class="input-wrapper">
+              <input
+                type="text"
+                placeholder="First Name"
+                class="first-name-input"
+                required
+              />
+              <img
+                src="images/icon-error.svg"
+                alt="error icon"
+                class="error-icon"
+              />
+              <span class="fn-error">First Name cannot be empty</span>
+            </div>
+            <div class="input-wrapper">
+              <input
+                type="text"
+                placeholder="Last Name"
+                class="last-name-input"
+                required
+              />
+              <img
+                src="images/icon-error.svg"
+                alt="error icon"
+                class="error-icon"
+              />
+              <span class="ln-error">Last Name cannot be empty</span>
+            </div>
+            <div class="input-wrapper">
+              <input
+                type="email"
+                placeholder="Email Address"
+                class="email-input"
+                required
+              />
+              <img
+                src="images/icon-error.svg"
+                alt="error icon"
+                class="error-icon"
+              />
+              <span class="e-error">Looks like this is not an email</span>
+            </div>
+            <div class="input-wrapper">
+              <input
+                type="password"
+                placeholder="Password"
+                class="password-input"
+                required
+              />
+              <img
+                src="images/icon-error.svg"
+                alt="error icon"
+                class="error-icon"
+              />
+              <span class="p-error">Password cannot be empty</span>
+            </div>
+          </form>
+          <div class="claim-free-trial-btn-container">
+            <button class="claim-free-trial-btn">
+              CLAIM YOUR FREE TRIA<sapn>L</sapn>
+            </button>
+            <h4>
+              By clicking the button, you are agreeing to our
+              <span>Terms and Services</span>
+            </h4>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+  const form = document.querySelector(".first-name-form");
+  const inputs = form.querySelectorAll("input");
+  const errorIcons = form.querySelectorAll(".error-icon");
+  const errorMessages = form.querySelectorAll("span");
+  const submitButton = document.querySelector(".claim-free-trial-btn");
+
+  const resetFormUI = () => {
+    inputs.forEach((input) => {
+      input.value = ""; // Clear input fields
+      input.style.border = ""; // Reset border style
+    });
+    errorIcons.forEach((icon) => {
+      icon.style.visibility = "hidden"; // Hide error icons
+    });
+    errorMessages.forEach((message) => {
+      message.style.display = "none"; // Hide error messages
+    });
+  };
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = () => {
+    let isValid = true;
+
+    inputs.forEach((input) => {
+      const errorMessage = input.nextElementSibling.nextElementSibling;
+      const errorIcon = input.nextElementSibling;
+
+      if (input.value.trim() === "") {
+        // Empty field
+        input.style.border = "2px solid #FF7979";
+        errorIcon.style.visibility = "visible";
+        errorMessage.style.display = "block";
+        isValid = false;
+      } else {
+        // Special validation for email field
+        if (input.type === "email" && !validateEmail(input.value)) {
+          input.style.border = "2px solid #FF7979";
+          errorIcon.style.visibility = "visible";
+          errorMessage.textContent = "Looks like this is not an email";
+          errorMessage.style.display = "block";
+          isValid = false;
+        } else {
+          // Valid input
+          input.style.border = ""; // Reset border
+          errorIcon.style.visibility = "hidden";
+          errorMessage.style.display = "none";
+        }
+      }
+    });
+
+    return isValid;
+  };
+
+  submitButton.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent form submission
+
+    if (validateForm()) {
+      resetFormUI(); // Reset form if all fields are valid
+    }
+  });
+});
+
+</script>
